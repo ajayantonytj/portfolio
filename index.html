@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajay Antony T J — Mechanical Design Engineer</title>
+<meta name="description" content="CAD portfolio — mechanical design, reverse engineering, and product development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F6F3;
+    --paper-2:#EDEEEA;
+    --ink:#1B1E1F;
+    --steel:#6B7178;
+    --hazard:#D99B00;
+    --machine-red:#A63A2E;
+    --line:#D3D5CF;
+    --line-strong:#B7BAB2;
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--hazard); color:var(--ink);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- layout shell ---------- */
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,246,243,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1040px; margin:0 auto;
+  }
+  .nav-mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:500;
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-mark .dot{
+    width:8px; height:8px; background:var(--machine-red); border-radius:50%;
+    display:inline-block;
+  }
+  nav.links{display:flex; gap:28px;}
+  nav.links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    color:var(--steel);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:4px 2px;
+    border-bottom:1px solid transparent;
+    transition:color 0.15s, border-color 0.15s;
+  }
+  nav.links a:hover, nav.links a:focus-visible{
+    color:var(--ink);
+    border-color:var(--machine-red);
+    outline:none;
+  }
+
+  /* ---------- hero / title block ---------- */
+  .hero{
+    padding:64px 0 40px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:800px){
+    .hero-grid{grid-template-columns:1fr; gap:28px;}
+  }
+  .hero-media{
+    position:relative;
+    border:1px solid var(--line-strong);
+    background:var(--paper-2);
+    aspect-ratio:16/10;
+  }
+  .hero-media::before, .hero-media::after{
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border:1px solid var(--ink);
+    opacity:0.35;
+  }
+  .hero-media::before{top:-1px; left:-1px; border-right:none; border-bottom:none;}
+  .hero-media::after{bottom:-1px; right:-1px; border-left:none; border-top:none;}
+  .hero-media img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-media .media-tag{
+    position:absolute;
+    bottom:0; left:0;
+    background:var(--ink);
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:5px 10px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    font-weight:600;
+    max-width:820px;
+  }
+  .hero h1 span.highlight{
+    color:var(--machine-red);
+  }
+  .hero p.lead{
+    max-width:640px;
+    margin-top:18px;
+    color:#3A3E40;
+    font-size:1.15rem;
+  }
+  .hero p.lead span.accent-1{
+    font-weight:600;
+    color:var(--ink);
+  }
+  .hero p.lead span.accent-2{
+    font-weight:600;
+    color:var(--machine-red);
+  }
+
+  /* Hero Action Buttons */
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    padding:10px 20px;
+    border:1px solid var(--line-strong);
+    background:#fff;
+    color:var(--ink);
+    font-weight:500;
+    transition:background 0.15s, color 0.15s, border-color 0.15s;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+  .btn-primary:hover{
+    background:var(--machine-red);
+    border-color:var(--machine-red);
+    color:#fff;
+  }
+  .btn:hover{
+    border-color:var(--machine-red);
+    color:var(--machine-red);
+  }
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:72px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:36px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--machine-red);
+  }
+  .section-head h2{
+    font-size:1.6rem;
+    font-weight:600;
+  }
+  .section-rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+    margin-left:8px;
+  }
+
+  /* ---------- projects ---------- */
+  .project{
+    border:1px solid var(--line-strong);
+    background:#fff;
+    margin-bottom:28px;
+    position:relative;
+  }
+  .project-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:20px;
+    padding:22px 24px 18px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .project-head h3{font-size:1.25rem; font-weight:600;}
+  .project-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:#fff;
+    background:var(--machine-red);
+    padding:3px 8px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    white-space:nowrap;
+    align-self:flex-start;
+  }
+  .project-sub{
+    color:var(--steel);
+    font-size:0.92rem;
+    margin-top:6px;
+  }
+  .project-body{
+    display:grid;
+    grid-template-columns:1fr 220px;
+    gap:0;
+  }
+  @media (max-width:720px){
+    .project-body{grid-template-columns:1fr;}
+  }
+  .project-text{
+    padding:20px 24px;
+    font-size:0.98rem;
+    color:#2C2F30;
+  }
+  .project-text ul{
+    margin:10px 0 0;
+    padding-left:18px;
+  }
+  .project-text li{margin-bottom:6px;}
+  .project-specs{
+    border-left:1px solid var(--line);
+    padding:20px 22px;
+    background:var(--paper-2);
+  }
+  @media (max-width:720px){
+    .project-specs{border-left:none; border-top:1px solid var(--line);}
+  }
+  .spec-row{
+    margin-bottom:14px;
+  }
+  .spec-row:last-child{margin-bottom:0;}
+  .spec-row .tb-label{margin-bottom:3px;}
+  .spec-row .tb-value{font-size:12.5px; line-height:1.4; font-weight:400;}
+
+  /* 3-Image Grid Layout & Captions */
+  .project-gallery{
+    padding:20px 24px 24px;
+    border-top:1px solid var(--line);
+  }
+  .project-gallery-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--steel);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:12px;
+    display:block;
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+  }
+  @media (max-width:720px){
+    .gallery-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  /* Figure and Captions Styling */
+  .gallery-grid figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .gallery-grid figure img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--line-strong);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .gallery-grid figure img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .gallery-grid figcaption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--steel);
+    margin-top: 6px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ---------- Image Lightbox Popup ---------- */
+  .lightbox-modal{
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background:rgba(27, 30, 31, 0.92);
+    backdrop-filter:blur(4px);
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:20px;
+  }
+  .lightbox-modal.active{
+    display:flex;
+  }
+  .lightbox-modal img{
+    max-width:90vw;
+    max-height:80vh;
+    border:2px solid var(--line);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  }
+  .lightbox-caption{
+    margin-top:12px;
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    text-align:center;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:20px; right:28px;
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:28px;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  /* ---------- skills ---------- */
+  .skills-grid{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .skill-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    border:1px solid var(--line-strong);
+    padding:7px 12px;
+    background:#fff;
+  }
+
+  /* ---------- contact ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1px solid var(--line-strong);
+  }
+  @media (max-width:720px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-cell{
+    padding:22px 24px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .contact-cell:nth-child(2n){border-right:none;}
+  .contact-cell a{
+    text-decoration:none;
+    font-weight:500;
+    border-bottom:1px solid var(--machine-red);
+  }
+
+  footer{
+    padding:32px 0 60px;
+    color:var(--steel);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot"></span>AJAY ANTONY T J</div>
+    <nav class="links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- INTRO SCENE -->
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1><span class="highlight">Ajay Antony T J</span></h1>
+        <p class="lead"><span class="accent-1">Design Engineer</span></p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <img src="herorender.png" alt="Featured project render">
+        <span class="media-tag">Featured Render</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Projects</h2>
+      <span class="section-rule"></span>
+    </div>
+
+    <!-- PROJECT 1: VARUNBOT -->
+    <div class="project">
+      <div class="project-head">
+        <div>
+          <h3>Autonomous Leaf Vacuum Robot</h3>
+          <div class="project-sub">CADD Centre · Ground-up UGV design</div>
+        </div>
+        <span class="project-tag">Completed</span>
+      </div>
+      <div class="project-body">
+        <div class="project-text">
+          <p>An autonomous 4-wheel-drive leaf vacuum robot designed for commercial and
+            institutional grounds — temples, resorts, and estates — in Kerala. What began as a
+            simple CAD-course leaf blower assembly grew into a full engineering design study,
+            benchmarked against commercial UGVs like the XAG R100/R150 and SuperDroid IG52.</p>
+          <ul>
+            <li>Total dimension of the robot: 1660×1150×850&nbsp;mm</li>
+          </ul>
+        </div>
+        <div class="project-specs">
+          <div class="spec-row"><span class="tb-label">Software</span><span class="tb-value"> :Siemens NX, SolidWorks Visualize</span></div>
+          <div class="spec-row"><span class="tb-label">Scope</span><span class="tb-value"> :Part Models, Assembly, Renders, Drawings</span></div>
+        </div>
+      </div>
+
+      <!-- 3-IMAGE GALLERY FOR PROJECT 1 -->
+      <div class="project-gallery">
+        <span class="project-gallery-title">Project Media (Click to expand)</span>
+        <div class="gallery-grid">
+          <figure>
+            <img src="Render1.png" alt="White Background Render">
+            <figcaption>White Background Render</figcaption>
+          </figure>
+          <figure>
+            <img src="Render2.png" alt="Outside Render">
+            <figcaption>Outside Render</figcaption>
+          </figure>
+          <figure>
+            <img src="Exploded_View.png" alt="Exploded View with BOM">
+            <figcaption>Exploded View with BOM</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: STATIC STRUCTURAL ANALYSIS (UPDATED) -->
+    <div class="project">
+      <div class="project-head">
+        <div>
+          <h3>Static Structural Analysis of Autonomous Leaf Vacuum Robot Chassis</h3>
+          <div class="project-sub">CADD Centre · Finite Element Analysis</div>
+        </div>
+        <span class="project-tag">Completed</span>
+      </div>
+      <div class="project-body">
+        <div class="project-text">
+          <p>Executed static structural finite element analysis on a leaf vacuum robot chassis modeled in Siemens NX to evaluate load capacity, deformation, and stress distribution under full operational payloads prior to manufacturing.</p>
+          <ul>
+            <li>Modeled a 3D structural assembly chassis in Siemens NX comprising 50×50 mm tubular frames, 3 mm baseplates, and 6 mm wheel brackets.</li>
+            <li>Conducted static FEA in ANSYS applying combined vertical loads (2,550 N total across hopper, blower, and electronics) under standard earth gravity and 8 fixed support points.</li>
+            <li>Evaluated stress distribution and deformation, achieving a peak von Mises stress of <strong>121.9 MPa</strong> and a maximum deflection of <strong>2.38 mm</strong>.</li>
+            <li>Validated frame integrity with a Minimum <strong>Factor of Safety of 2.05</strong> against structural steel yield strength (250 MPa), certifying the design for fabrication.</li>
+          </ul>
+        </div>
+        <div class="project-specs">
+          <div class="spec-row"><span class="tb-label">Software</span><span class="tb-value">Siemens NX, ANSYS 2020 R1</span></div>
+          <div class="spec-row"><span class="tb-label">Scope</span><span class="tb-value">Static Structural Analysis</span></div>
+        </div>
+      </div>
+
+      <!-- 3-IMAGE GALLERY FOR PROJECT 2 -->
+      <div class="project-gallery">
+        <span class="project-gallery-title">Project Media (Click to expand)</span>
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/leafvac-chassis.png" alt="Siemens NX Chassis CAD Assembly">
+            <figcaption>Siemens NX Chassis CAD Model</figcaption>
+          </figure>
+          <figure>
+            <img src="images/leafvac-fea-stress.png" alt="ANSYS von Mises Stress Distribution">
+            <figcaption>ANSYS von Mises Stress Distribution</figcaption>
+          </figure>
+          <figure>
+            <img src="images/leafvac-fea-deformation.png" alt="Total Deformation Plot">
+            <figcaption>Total Deformation Plot (2.38 mm Max)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: CAPSTONE CAMERA SLIDER -->
+    <div class="project">
+      <div class="project-head">
+        <div>
+          <h3>Motorized Camera Slider — Capstone Project</h3>
+          <div class="project-sub">Conestoga College · Design &amp; Manufacturing Deployment Plan</div>
+        </div>
+        <span class="project-tag">Completed</span>
+      </div>
+      <div class="project-body">
+        <div class="project-text">
+          <p>Capstone mechanical design project: a motorized camera slider built around a rack-and-pinion drive mechanism, designed and modeled end-to-end as part of the CAD program at Conestoga College</p>
+          <ul>
+            <li>Designed a rack-and-pinion drive system to translate a camera carriage smoothly along a linear rail</li>
+            <li>Modeled the full assembly in CAD with attention to fit, motion clearance, and manufacturability</li>
+            <li>Produced supporting documentation as part of the capstone deliverable</li>
+          </ul>
+        </div>
+        <div class="project-specs">
+          <div class="spec-row"><span class="tb-label">Software</span><span class="tb-value">SolidWorks Sheet Metal</span></div>
+          <div class="spec-row"><span class="tb-label">Scope</span><span class="tb-value">DFM + Flat Patterns</span></div>
+        </div>
+      </div>
+
+      <!-- 3-IMAGE GALLERY FOR PROJECT 3 -->
+      <div class="project-gallery">
+        <span class="project-gallery-title">Project Media (Click to expand)</span>
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/enclosure-folded.png" alt="3D Sheet Metal Assembly">
+            <figcaption>Folded Enclosure Assembly</figcaption>
+          </figure>
+          <figure>
+            <img src="images/enclosure-flat.png" alt="DXF Flat Pattern Layout">
+            <figcaption>DXF Flat Pattern &amp; Bend Lines</figcaption>
+          </figure>
+          <figure>
+            <img src="images/enclosure-prototype.png" alt="Fabricated Physical Prototype">
+            <figcaption>Fabricated Prototype Unit</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: SHREDDER -->
+    <div class="project">
+      <div class="project-head">
+        <div>
+          <h3>Industrial Shredder Shaft — Reverse Engineering &amp; Reassembly</h3>
+          <div class="project-sub">Conestoga College · Multi-format CAD recovery</div>
+        </div>
+        <span class="project-tag">Case Study</span>
+      </div>
+      <div class="project-body">
+        <div class="project-text">
+          <p>A recycling facility's industrial shredder suffered structural failure after hopper
+            overload bent the hex shaft and damaged multiple cutting blades. With the OEM out of
+            business, the task was to reconstruct the full shaft assembly from a fragmented,
+            multi-vendor CAD dataset into one clean, fully-defined SolidWorks model.</p>
+          <ul>
+            <li>Imported and repaired non-native geometry (Inventor .ipt, STEP, Parasolid) using
+              SolidWorks feature recognition, rebuilding editable feature trees from dumb solids</li>
+            <li>Fully defined every sketch with dimensional constraints — no floating geometry</li>
+            <li>Assembled the complete shaft stack: hex shaft, spur gear, blades, spacers, and
+              divertors, with correct mating and rotational orientation</li>
+            <li>Structured part properties (material, finish, drafter, date) and renamed features
+              to reflect actual part geometry for downstream drafting</li>
+          </ul>
+        </div>
+        <div class="project-specs">
+          <div class="spec-row"><span class="tb-label">Software</span><span class="tb-value">SolidWorks</span></div>
+          <div class="spec-row"><span class="tb-label">Scope</span><span class="tb-value">CAD Assembly</span></div>
+        </div>
+      </div>
+
+      <!-- 3-IMAGE GALLERY FOR PROJECT 4 -->
+      <div class="project-gallery">
+        <span class="project-gallery-title">Project Media (Click to expand)</span>
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/shredder-shaft.png" alt="Shaft Assembly Render">
+            <figcaption>Shaft Assembly Render</figcaption>
+          </figure>
+          <figure>
+            <img src="images/shredder-exploded.png" alt="Exploded Component View">
+            <figcaption>Exploded Component View</figcaption>
+          </figure>
+          <figure>
+            <img src="images/shredder-drawing.png" alt="2D Production Drawing">
+            <figcaption>2D Production Drawing</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Skills &amp; Software</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="skills-grid">
+      <span class="skill-chip">SolidWorks</span>
+      <span class="skill-chip">AutoCAD 2D</span>
+      <span class="skill-chip">Fusion 360</span>
+      <span class="skill-chip">CATIA</span>
+      <span class="skill-chip">NX</span>
+      <span class="skill-chip">GD&amp;T</span>
+      <span class="skill-chip">DFM</span>
+      <span class="skill-chip">BOM Structuring</span>
+      <span class="skill-chip">FEA Concepts</span>
+      <span class="skill-chip">Sheet Metal</span>
+      <span class="skill-chip">Weldments</span>
+      <span class="skill-chip">ANSYS</span>
+      <span class="skill-chip">Autodesk Inventor</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Contact</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-cell">
+        <span class="tb-label">Email</span><br>
+        <a href="mailto:ajayantonytj@gmail.com">ajayantonytj@gmail.com</a>
+      </div>
+      <div class="contact-cell">
+        <span class="tb-label">LinkedIn</span><br>
+        <a href="https://linkedin.com/in/ajayatj" target="_blank" rel="noopener">linkedin.com/in/ajayatj</a>
+      </div>
+      <div class="contact-cell">
+        <span class="tb-label">Location</span><br>
+        Kerala, India — open to relocation
+      </div>
+      <div class="contact-cell">
+        <span class="tb-label">Availability</span><br>
+        Freelance CAD &amp; full-time Design Engineer roles
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- LIGHTBOX MODAL CONTAINER -->
+<div class="lightbox-modal" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img id="lightboxImg" src="" alt="Expanded View">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<footer>
+  DRAWN BY AJAY ANTONY T J &nbsp;·&nbsp; SHEET 1 OF 1 &nbsp;·&nbsp; © <span id="year"></span>
+</footer>
+
+<script>
+  // Set copyright year dynamically
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Lightbox & Caption functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  // Event listener for image clicks inside the galleries
+  document.querySelectorAll('.gallery-grid').forEach(grid => {
+    grid.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        lightboxImg.src = e.target.src;
+        // Get caption from neighboring <figcaption>
+        const figcaption = e.target.nextElementSibling;
+        lightboxCaption.textContent = figcaption ? figcaption.textContent : '';
+        lightbox.classList.add('active');
+      }
+    });
+  });
+
+  // Close lightbox on button click
+  lightboxClose.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+  });
+
+  // Close lightbox when clicking overlay background
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('active');
+    }
+  });
+
+  // Close lightbox with ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
